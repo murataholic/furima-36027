@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :comments
+<!-- - has_many :comments -->
 - has_many :purchases
 
 ## items テーブル
@@ -29,7 +29,7 @@
 | condition     | string     | null: false                    |
 | delivery_fee  | string     | null: false                    |
 | ship_from     | string     | null: false                    |
-| shipping_days | string     | null: false                    |
+| shipping_day  | string     | null: false                    |
 | price         | integer     | null: false                    |
 | user          | references | null: false, foreign_key: true |
 
@@ -37,10 +37,10 @@
 ### Association
 
 - belongs_to :user
-- has_many :comments
+<!-- - has_many :comments -->
 - has_one :purchase
 
-## comments テーブル
+<!-- ## comments テーブル
 
 | Column | Type       | Options                        |
 | -------| ---------- | ------------------------------ |
@@ -51,7 +51,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :item
+- belongs_to :item -->
 
 ### purchases テーブル
 
@@ -72,14 +72,10 @@
 | -----------------------| ---------- | ------------------------------ |
 | postal_code            | integer    | null: false                    |
 | prefecture             | string     | null: false                    |
-| city/ward/town/village | string     | null: false                    |
+| city_ward_town_village | string     | null: false                    |
 | house_number           | string     | null: false                    |
 | building_name          | string     |                                |
 | telephone_number       | integer    | null: false                    |
-| card_number            | integer    | null: false                    |
-| mm                     | integer    | null: false                    |
-| yy                     | integer    | null: false                    |
-| security_code          | integer    | null: false                    |
 | purchase               | references | null: false, foreign_key: true |
 
 ### Association
