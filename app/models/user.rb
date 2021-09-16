@@ -7,10 +7,23 @@ class User < ApplicationRecord
   has_many :purchases
   # has_many :comments
 
-  validates :nickname,                presence: true
-  validates :first_name_zenkaku,      presence: true
-  validates :last_name_zenkaku,       presence: true
-  validates :f_name_zenkaku_katakana, presence: true
-  validates :l_name_zenkaku_katakana, presence: true
-  validates :date_of_birth,           presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :date_of_birth
+
+    with_options format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/} do
+    validates :password
+    end
+
+    with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
+      validates :first_name_zenkaku
+      validates :last_name_zenkaku
+    end
+
+    with_options format: { with: /\A[ァ-ヶ々ー]+\z/ } do
+      validates :f_name_zenkaku_katakana
+      validates :l_name_zenkaku_katakana
+    end
+
+  end
 end
