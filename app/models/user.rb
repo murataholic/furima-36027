@@ -11,8 +11,8 @@ class User < ApplicationRecord
     validates :nickname
     validates :date_of_birth
 
-    with_options format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/} do
-    validates :password
+    with_options format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/ } do
+      validates :password
     end
 
     with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
@@ -24,6 +24,5 @@ class User < ApplicationRecord
       validates :f_name_zenkaku_katakana
       validates :l_name_zenkaku_katakana
     end
-
   end
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
   before do
     @user = FactoryBot.build(:user)
   end
@@ -33,7 +32,7 @@ RSpec.describe User, type: :model do
         it 'nicknameが空では登録できない' do
           @user.nickname = ''
           @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+          expect(@user.errors.full_messages).to include("Nickname can't be blank")
         end
         it 'emailが空では登録できない' do
           @user.email = ''
@@ -100,19 +99,19 @@ RSpec.describe User, type: :model do
           @user.password = 'samp1'
           @user.password_confirmation = 'samp1'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+          expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
         end
         it 'passwordが半角数字のみでは登録できない' do
           @user.password = '000000'
           @user.password_confirmation = '000000'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password is invalid")
+          expect(@user.errors.full_messages).to include('Password is invalid')
         end
         it 'passwordが半角英文字のみでは登録できない' do
           @user.password = 'abcdef'
           @user.password_confirmation = 'abcdef'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password is invalid")
+          expect(@user.errors.full_messages).to include('Password is invalid')
         end
         it 'passwordに半角大文字が含まれる場合は登録できない' do
           @user.password = 'HOGEhoge1'
@@ -127,42 +126,42 @@ RSpec.describe User, type: :model do
         it 'last_name_zenkakuが半角文字では登録できない' do
           @user.last_name_zenkaku = 'Yamada'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Last name zenkaku is invalid")
+          expect(@user.errors.full_messages).to include('Last name zenkaku is invalid')
         end
         it 'first_name_zenkakuが半角文字では登録できない' do
           @user.first_name_zenkaku = 'Tesuto'
           @user.valid?
-          expect(@user.errors.full_messages).to include("First name zenkaku is invalid")
+          expect(@user.errors.full_messages).to include('First name zenkaku is invalid')
         end
         it 'l_name_zenkaku_katakanaが半角文字では登録できない' do
           @user.l_name_zenkaku_katakana = 'Yamada'
           @user.valid?
-          expect(@user.errors.full_messages).to include("L name zenkaku katakana is invalid")
+          expect(@user.errors.full_messages).to include('L name zenkaku katakana is invalid')
         end
         it 'f_name_zenkaku_katakanaが半角文字では登録できない' do
           @user.f_name_zenkaku_katakana = 'Tesuto'
           @user.valid?
-          expect(@user.errors.full_messages).to include("F name zenkaku katakana is invalid")
+          expect(@user.errors.full_messages).to include('F name zenkaku katakana is invalid')
         end
         it 'last_name_zenkakuに全角の記号が含まれる場合は登録できない' do
           @user.last_name_zenkaku = '山田％'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Last name zenkaku is invalid")
+          expect(@user.errors.full_messages).to include('Last name zenkaku is invalid')
         end
         it 'first_name_zenkakuに全角の記号が含まれる場合は登録できない' do
           @user.first_name_zenkaku = '手須斗！'
           @user.valid?
-          expect(@user.errors.full_messages).to include("First name zenkaku is invalid")
+          expect(@user.errors.full_messages).to include('First name zenkaku is invalid')
         end
         it 'l_name_zenkaku_katakanaに全角の記号が含まれる場合は登録できない' do
           @user.l_name_zenkaku_katakana = 'ヤマダ％'
           @user.valid?
-          expect(@user.errors.full_messages).to include("L name zenkaku katakana is invalid")
+          expect(@user.errors.full_messages).to include('L name zenkaku katakana is invalid')
         end
         it 'f_name_zenkaku_katakanaに全角の記号が含まれる場合は登録できない' do
           @user.f_name_zenkaku_katakana = 'テスト！'
           @user.valid?
-          expect(@user.errors.full_messages).to include("F name zenkaku katakana is invalid")
+          expect(@user.errors.full_messages).to include('F name zenkaku katakana is invalid')
         end
       end
     end
