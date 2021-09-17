@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :items
-  has_many :purchases
+  # has_many :items (商品出品機能の実装時にコメントアウトを解除)
+  # has_many :purchases (商品購入機能の実装時にコメントアウトを解除)
   # has_many :comments
 
   with_options presence: true do
