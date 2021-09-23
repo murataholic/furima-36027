@@ -3,9 +3,9 @@ function calc_fee_profit (){
   price.addEventListener("input", () => {
     const inputPrice = price.value;
     const calcFee = document.getElementById("add-tax-price");
-    calcFee.innerHTML = Math.floor( inputPrice * 0.1 );
+    calcFee.innerHTML = Math.floor( inputPrice * 0.1 ).toLocaleString();
     const calcProfit = document.getElementById("profit");
-    calcProfit.innerHTML = Math.floor( inputPrice * ( 1 - 0.1 ));
+    calcProfit.innerHTML =  ( inputPrice - Math.floor( inputPrice * 0.1 )).toLocaleString();
   });
 };
 
