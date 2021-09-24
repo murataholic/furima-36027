@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-
   end
 
   describe '商品を出品する' do
@@ -87,32 +86,32 @@ RSpec.describe Item, type: :model do
       it '「価格」欄に全角数字が入力されている場合、出品できない' do
         @item.price = '４００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '「価格」欄に半角文字が含まれる場合、出品できない' do
         @item.price = '30000dollar'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '「価格」欄に全角文字が含まれる場合、出品できない' do
         @item.price = '3万円'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '「価格」欄に小数が入力されている場合、出品できない' do
         @item.price = '1234.5'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '「価格」が「300未満」の場合、出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '「価格」が「1000万以上」の場合、出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it 'ユーザーが紐付いていない場合、出品できない' do
         @item.user = nil
