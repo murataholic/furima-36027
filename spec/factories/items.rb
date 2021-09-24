@@ -10,5 +10,9 @@ FactoryBot.define do
     shipping_day_id { rand(2..4) }
     price           { Faker::Number.between(from: 300, to: 9999999) }
     association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('app/assets/images/item-sample.png'), filename: 'item-sample.png')
+    end
   end
 end
