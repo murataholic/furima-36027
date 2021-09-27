@@ -17,6 +17,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    # @comment = comment.new 追加機能(コメント投稿機能)実装時にコメントアウト解除
+    # @comments = @item.comments.includes(:user)
+  end
+
   private
 
   def item_params
