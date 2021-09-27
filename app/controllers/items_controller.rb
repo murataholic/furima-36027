@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
@@ -18,18 +19,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     # @comment = comment.new 追加機能(コメント投稿機能)実装時にコメントアウト解除
     # @comments = @item.comments.includes(:user)
   end
 
   def edit
-    @item = Item.find(params[:id])
     redirect_to action: :index if current_user != @item.user
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to action: :show
     else
@@ -39,6 +37,9 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
   def item_params
     params.require(:item).permit(
       :name, :description, :category_id, :condition_id,
