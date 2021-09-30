@@ -37,9 +37,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if item.destroy
-      redirect_to action: :index
-    end
+    redirect_to action: :index if item.destroy
   end
 
   private
@@ -47,6 +45,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
   def item_params
     params.require(:item).permit(
       :name, :description, :category_id, :condition_id,
