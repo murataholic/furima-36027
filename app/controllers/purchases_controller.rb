@@ -1,10 +1,10 @@
 class PurchasesController < ApplicationController
+  before_action :set_item, only: :index
   def index
-    @item = Item.find(params[:item_id])
+    @purchase_shipping_address = PurchaseShippingAddress.new
   end
 
   def new
-    @purchase_shipping_address = PurchaseShippingAddress.new
   end
 
   def create
@@ -13,14 +13,19 @@ class PurchasesController < ApplicationController
       @purchase_shipping_address.save
       redirect_to root_path
     else
-      render :new
+      set_item
+      render :index
     end
   end
 
   private
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
   def purchase_params
-    params.require(:purchase_shipping_address).permit(:postal_code, :prefecture_id, :city_ward_town_village, :house_number, :building_name, :telephone_number).merge(user_id: current_user.id)
+    params.require(:purchase_shipping_address).permit(:postal_code, :prefecture, :city_ward_town_village, :house_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
 end
