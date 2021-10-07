@@ -26,7 +26,7 @@ RSpec.describe PurchaseShippingAddress, type: :model do
       it '「郵便番号」がハイフン（-）を含んだ正しい形式でない場合、購入できない' do
         @purchase_shipping_address.postal_code = '1234567'
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_shipping_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '「都道府県」が空の場合、購入できない' do
         @purchase_shipping_address.prefecture = ''
@@ -56,12 +56,12 @@ RSpec.describe PurchaseShippingAddress, type: :model do
       it '「電話番号」が10ケタ未満の場合、購入できない' do
         @purchase_shipping_address.telephone_number = '123456789'
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@purchase_shipping_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it '「電話番号」に半角数字以外の文字が含まれる場合、購入できない' do
         @purchase_shipping_address.telephone_number = '００-００００-００００'
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@purchase_shipping_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it '「token」が空の場合、購入できない' do
         @purchase_shipping_address.token = ''
